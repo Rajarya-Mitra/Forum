@@ -1,0 +1,65 @@
+/*body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+h1 {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+form {
+    margin: 20px 0;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px 0;
+}*/
+
+.nav-link:hover
+    {
+        background: green;
+        color: #000000;
+    }
+    .dropdown-submenu {
+        position: relative;
+    }
+    .dropdown-submenu:hover
+    {
+        background: green;
+        color: #FF0000;
+    }
+    .dropdown-submenu a::after {
+        transform: rotate(-90deg);
+        position: absolute;
+        right: 6px;
+        top: 0.8em;
+    }
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-left: 0.1rem;
+        margin-right: 0.1rem;
+    }
+
+#ques
+    {
+    min-height: 509px;
+    }
