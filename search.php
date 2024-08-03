@@ -13,9 +13,9 @@
     </head>
     <body>
         <div class="container my-3">
-            <h1>Search Results for <em>"<?php echo $_GET['search']?>"</em></h1>
+        <h1>Search Results for <em>"<?php echo htmlspecialchars($_GET['search']); ?>"</em></h1>
             <?php
-            $query = $_GET["search"];
+             $query = htmlspecialchars($_GET["search"]);
             //$sql = "SELECT * FROM forum.threads WHERE MATCH (t_title, t_desc) AGAINST ('$query')";
             $sql = "SELECT * FROM forum.threads WHERE lower(t_title) LIKE '%".strtolower($query). "%' OR lower(t_desc) LIKE '%" .strtolower($query)."%'";
             $result = selectsql($sql);

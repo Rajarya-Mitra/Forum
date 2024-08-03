@@ -35,7 +35,7 @@ input, button {
 
 .nav-link:hover
     {
-        background: green;
+        background: #14A44D;
         color: #000000;
     }
     .dropdown-submenu {
@@ -43,7 +43,7 @@ input, button {
     }
     .dropdown-submenu:hover
     {
-        background: green;
+        background: #14A44D;
         color: #FF0000;
     }
     .dropdown-submenu a::after {

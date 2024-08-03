@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ER Diagram</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <div class="mermaid">
+        erDiagram
+            USERS {
+                int u_id PK
+                string u_email
+                string u_role
+                ...
+            }
+
+            CATEGORIES {
+                int c_id PK
+                string c_name
+                ...
+            }
+
+            THREADS {
+                int thread_id PK
+                string thread_title
+                string thread_desc
+                int thread_cat_id FK
+                int thread_user_id FK
+                ...
+            }
+
+            COMMENTS {
+                int comment_id PK
+                string comment_content
+                int comment_thread_id FK
+                int comment_user_id FK
+                ...
+            }
+
+            LIKES {
+                int like_id PK
+                int user_id FK
+                int thread_id FK "nullable"
+                int comment_id FK "nullable"
+                ...
+            }
+
+            USERS ||--o{ THREADS : "creates"
+            USERS ||--o{ COMMENTS : "writes"
+            CATEGORIES ||--o{ THREADS : "contains"
+            THREADS ||--o{ COMMENTS : "contains"
+            USERS ||--o{ LIKES : "gives"
+            THREADS ||--o{ LIKES : "receives"
+            COMMENTS ||--o{ LIKES : "receives"
+    </div>
+</body>
+</html>
