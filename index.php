@@ -41,13 +41,13 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="img\DoO_main_orange1.jpeg" alt="First Slide" style="width:500px;height:50vh;">
+                <img class="d-block w-100" src="img\businessmen-making-handshake1.jpg" alt="First Slide" style="width:500px;height:50vh;">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="img/OFB_Gate_Name_Cut.jpg" alt="Second Slide" style="width:500px;height:50vh;">
+                <img class="d-block w-100" src="img/young-programmer-working-software.jpg" alt="Second Slide" style="width:500px;height:50vh;">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="img/arms_banner.jpg" alt="Third Slide" style="width:500px;height:50vh;">
+                <img class="d-block w-100" src="img/business-meeting-room.jpg" alt="Third Slide" style="width:500px;height:50vh;">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -70,7 +70,7 @@
     </div>
 
     <div class="container my-4">
-        <h1 class="py-2">Browse Categories</h1>
+        <h1 class="py-2">Browse Sections</h1>
         <div class="row">
             <?php
             $sql = "SELECT * FROM forum.categories";
@@ -80,7 +80,7 @@
                 $cat_name = $row['c_name'];
                 $cat_desc = $row['c_description'];
                 echo '<div class="col-md-4 my-2">
-                        <div class="card category-card" style="background-color:lightcyan">
+                        <div class="card category-card" style="background-color:lavender">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="threadlist.php?catid=' . $cat_id . '?sort=newest">' . $cat_name . '</a></h5>
                                 <p class="card-text">' . substr($cat_desc, 0, 100) . '...</p>

@@ -23,9 +23,10 @@ foreach ($result as $row) {
     $likes = $row['likes'];
     $is_edited = $row['is_edited'];
 
-    $sql2 = "SELECT u_name FROM forum.users WHERE u_id = '$t_u_id'";
+    $sql2 = "SELECT u_name,u_profile_photo FROM forum.users WHERE u_id = '$t_u_id'";
     $row2 = selectsql($sql2);
 
+    $user_photo = !empty($row2[0]['u_profile_photo']) ? $row2[0]['u_profile_photo'] : 'img/user_default.png';
     $liked = false;
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         $user_id = $_SESSION['u_id'];
@@ -35,7 +36,7 @@ foreach ($result as $row) {
     }
     
     echo '<div class="media my-3">
-            <img class="mr-3" src="img/user_default.png" width="50px" alt="User Image">
+            <img class="mr-3 rounded-circle" src="' . $user_photo . '" width="50px" height="50px" alt="User Image">
             <div class="media-body">
                 <h5 class="font-weight-bold my-0">' . $row2[0]['u_name'] . '</h5>
                 <h5 class="mt-0"><a class="text-dark" href="threads.php?threadid=' . $t_id . '">' . $t_title . ($is_edited ? ' (edited)' : '') . '</a></h5>
@@ -43,7 +44,7 @@ foreach ($result as $row) {
                 <div class="font-weight-bold my-0">Asked at ' . $thread_time . '</div>
             </div>
             <div>
-                <button class="btn-primary like-btn ' . ($liked ? 'liked' : '') . '" data-id="' . $t_id . '">
+                <button title="Like" class="btn-primary like-btn ' . ($liked ? 'liked' : '') . '" data-id="' . $t_id . '">
                     <i class="bi ' . ($liked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up') . '"></i>
                 </button>
                 <span class="ml-2" id="like-count-' . $t_id . '">' . $likes . '</span>

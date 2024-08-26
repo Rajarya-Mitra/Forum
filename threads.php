@@ -57,14 +57,35 @@
 
         // Handle Post Comment
         if (isset($_POST['comment_content'])) {
+            // Sanitize input
             $comment_content = htmlspecialchars($_POST['comment_content']);
             $u_id = $_POST['u_id'];
-            $sql = "INSERT INTO forum.comments (comment_content, t_id, comment_by, created_at) VALUES ('$comment_content', '$t_id', '$u_id', CURRENT_TIMESTAMP)";
-            $result = execsql($sql);
-            $showAlert = true;
-            if ($showAlert) {
+        
+            // Prepare the SQL statement with placeholders
+            $sql = "INSERT INTO forum.comments (comment_content, t_id, comment_by, created_at) 
+                    VALUES (:comment_content, :t_id, :u_id, CURRENT_TIMESTAMP)";
+            
+            // Execute the SQL statement with the provided data
+            $params = [
+                ':comment_content' => $comment_content,
+                ':t_id' => $t_id,
+                ':u_id' => $u_id
+            ];
+        
+            // Assuming execsql is a function that handles SQL execution
+            $result = execsql($sql, $params);
+        
+            // Check if the query was successful
+            if ($result) {
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success!</strong> Your comment has been added.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>';
+            } else {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> There was an issue adding your comment. Please try again.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -74,10 +95,16 @@
 
         // Handle Edit Comment
         if (isset($_POST['edit_comment'])) {
-            $edit_comment_id = $_POST['edit_comment_id'];
+            $edit_comment_id = (int)$_POST['edit_comment_id']; // Ensure this is an integer
             $edit_comment_content = htmlspecialchars($_POST['edit_comment_content']);
-            $sql = "UPDATE forum.comments SET comment_content = '$edit_comment_content', is_edited = TRUE WHERE comment_id = $edit_comment_id";
-            $result = execsql($sql);
+            
+            $sql = "UPDATE forum.comments SET comment_content = :comment_content, is_edited = TRUE WHERE comment_id = :comment_id";
+            $params = [
+                ':comment_content' => $edit_comment_content,
+                ':comment_id' => $edit_comment_id
+            ];
+            
+            $result = execsql($sql, $params);
             $showAlert = true;
             if ($showAlert) {
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -85,15 +112,20 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                      </div>';
+                    </div>';
             }
         }
 
         // Handle Delete Comment
         if (isset($_POST['delete_comment'])) {
-            $comment_id = $_POST['delete_comment_id'];
-            $sql = "DELETE FROM forum.comments WHERE comment_id = $comment_id";
-            $result = execsql($sql);
+            $comment_id = (int)$_POST['delete_comment_id']; // Ensure this is an integer
+            
+            $sql = "DELETE FROM forum.comments WHERE comment_id = :comment_id";
+            $params = [
+                ':comment_id' => $comment_id
+            ];
+            
+            $result = execsql($sql, $params);
             $showAlert = true;
             if ($showAlert) {
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -101,7 +133,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                      </div>';
+                    </div>';
             }
         }
     ?>

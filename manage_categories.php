@@ -37,7 +37,7 @@ $categories = selectsql($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Categories</title>
+    <title>Manage Categories | weConnect</title>
 </head>
 <body>
     <div class="container my-4">
@@ -71,7 +71,7 @@ $categories = selectsql($sql);
                         <td>
                             <div class="ms-2">
                             <button class="btn btn-sm btn-primary mb-2" style="width:10vh;" data-toggle="modal" data-target="#editModal" onclick="populateEditForm(<?php echo $category['c_id']; ?>, '<?php echo addslashes(htmlspecialchars($category['c_name'])); ?>', '<?php echo addslashes(htmlspecialchars($category['c_description'])); ?>')">Edit</button>
-                                <button class="btn btn-sm btn-danger" style="width:10vh;" data-toggle="modal" data-target="#deleteModal" onclick="populateDeleteForm(<?php echo $category['c_id']; ?>)">Delete</button>
+                            <button class="btn btn-sm btn-danger" style="width:10vh;" data-toggle="modal" data-target="#deleteModal" onclick="populateDeleteForm(<?php echo $category['c_id']; ?>)">Delete</button>
                             </div>
                         </td>
                     </tr>
